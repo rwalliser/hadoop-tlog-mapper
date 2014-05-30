@@ -22,5 +22,10 @@ class Trx(object):
         self.opcode = None
         pass
     
+    def getAttribute(self):
+        return ','.join("%s" % item[0] for item in vars(self).items())
+    
     def __str__(self):
-        return ', '.join("%s:%s" % item for item in vars(self).items())
+        result = ','.join("%s" % item[1] for item in vars(self).items()) 
+        return  result.encode('utf-8')
+#         return ', '.join("%s:%s" % item for item in vars(self).items())

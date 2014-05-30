@@ -2,10 +2,12 @@
 __author__ = 'renatowalliser'
 
 import sys
+sys.path.append('.')
 import cStringIO
 import xml.etree.ElementTree as xml
-import re
+# import re
 from Trx import Trx
+
 
 
 def extraktTrxFromXml(value):
@@ -17,16 +19,19 @@ def extraktTrxFromXml(value):
 
 if __name__ == '__main__':
     inTrx = None
+    trx = Trx()
+    print trx.getAttribute()
+    
     for line in sys.stdin:
         line = line.strip()
 
         if line.find("<TRX") != -1:
             
-            outterXml = re.findall('(<TRX.*/>$)', line)
-            if (len(outterXml)>0):
-                print extraktTrxFromXml(outterXml[0])
-                pass
-            else:    
+#             outterXml = re.findall('(<TRX.*/>$)', line)
+#             if (len(outterXml)>0):
+#                 print extraktTrxFromXml(outterXml[0])
+#                 pass
+#             else:    
                 inTrx = True
                 xmlBuffer = cStringIO.StringIO()  # @UndefinedVariable
                 xmlBuffer.write(line)
